@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Fredericka+the+Great&family=Indie+Flower&display=swap');
+
+.login-container {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    width: 100vw;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+}
+
+h1 {
+    margin-bottom: 15px;
+    font-family: "Fredericka the Great", serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+.book {
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    width: 60%;
+    height: 30%;
+    border-radius: 10px;
+    justify-content: space-between;
+}
+
+.login-form {
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    padding: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+label {
+    margin-bottom: 10px;
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+    float: right;
+    clear: both;
+    height: 35px;
+    margin-bottom: 15px;
+    width: 300px;
+}
+
+.submit {
+    font-family: "DM Serif Text", serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 18px;
+    width: 250px;
+}
+
+p {
+    margin-top: 15px;
+}
+
+.right-side {
+    background-color: blueviolet;
+    height: 100%;
+    width: 50%;
+    border-radius: 10px;
+}

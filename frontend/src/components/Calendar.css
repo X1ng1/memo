@@ -1,0 +1,201 @@
+.calendar-container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Custom styling for react-big-calendar */
+.rbc-calendar {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  min-height: 600px;
+}
+
+.rbc-header {
+  background-color: #fffd83;
+  padding: 12px;
+  font-weight: 600;
+  border-bottom: 2px solid #ffffff;
+  color: #ff960c;
+}
+
+.rbc-today {
+  background-color: #fffd83;
+}
+
+.rbc-event {
+  background-color: #fcd00c;
+  border: none;
+  border-radius: 6px;
+  padding: 4px 8px;
+  color: white;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rbc-event:hover {
+  background-color: #ff960c;
+}
+
+.rbc-selected {
+  background-color: #ff960c;
+}
+
+.rbc-toolbar {
+  margin-bottom: 20px;
+  padding: 20px !important;
+  background-color: #fdfcbf;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  flex-wrap: wrap;
+  gap: 30px;  /* Increased from 15px to 30px */
+  min-height: 70px !important;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.rbc-toolbar > * {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.rbc-toolbar-label {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #ff960c;
+  flex: 1;
+  text-align: center;
+  order: 0;
+  margin: 0 250px;  /* Increased from 20px to 40px */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.rbc-toolbar .rbc-btn-group {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  height: 100%;
+}
+
+.rbc-toolbar .rbc-btn-group:first-child {
+  order: -1;
+}
+
+.rbc-toolbar button {
+  background-color: #fff;
+  border: 2px solid #ffdc9a;
+  padding: 10px 20px;
+  margin: 0 4px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 500;
+  color: #ff960c;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.rbc-toolbar button:hover {
+  background-color: #fdfcbf;
+  border-color: #ff960c;
+  transform: translateY(-1px);
+  color: #ff960c;
+}
+
+.rbc-toolbar button.rbc-active {
+  background-color: #ff960c;
+  color: white;
+  border-color: #ff960c;
+}
+
+.rbc-month-view {
+  border: 2px solid #ffdc9a;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.rbc-date-cell {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.rbc-date-cell:hover {
+  background-color: #fdfcbf;
+}
+
+.rbc-date-cell button {
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: none;
+  color: #ff8e23;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.rbc-date-cell.rbc-today button {
+  color: #ff960c;
+  font-weight: 700;
+}
+
+.rbc-off-range {
+  color: #fdfcbf;
+}
+
+/* Add a hint for users */
+/* .rbc-month-view::after {
+  content: "Click on any date to write a journal entry";
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fdfcbf;
+  color: #ff960c;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.9em;
+  font-weight: 500;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+} */
+
+@media (max-width: 768px) {
+  .calendar-container {
+    margin: 10px;
+  }
+  
+  .rbc-toolbar {
+    flex-direction: column;
+    gap: 15px;
+    padding: 15px;
+  }
+  
+  .rbc-toolbar .rbc-btn-group {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .rbc-toolbar button {
+    margin: 2px;
+    padding: 8px 16px;
+  }
+  
+  .rbc-month-view::after {
+    font-size: 0.8em;
+    padding: 6px 12px;
+  }
+}

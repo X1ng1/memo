@@ -1,0 +1,117 @@
+.home-container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    position: relative;
+    background-image: url('/book-page.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    background-color: transparent;
+    z-index: 0;
+}
+
+.home-content {
+    position: relative;
+    z-index: 1;
+    text-align: left;
+    max-width: 55%;
+    padding: 8rem;
+}
+
+.home-title {
+    font-size: 4rem;
+    font-weight: bold;
+    color: rgb(255, 65, 170);
+    margin-bottom: 2rem;
+}
+
+.home-description {
+    font-size: 1.25rem;
+    color: rgb(255, 65, 170);
+    margin-bottom: 3rem;
+    max-width: 28rem;
+    line-height: 1.6;
+}
+
+.mini-calendar-wrapper {
+    margin-top: 2rem;
+}
+
+.journal-button-container {
+    position: fixed;
+    right: 8rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+.journal-button {
+    background-color: white;
+    color: #db2777;
+    font-weight: bold;
+    padding: 1rem 2rem;
+    border-radius: 50px;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.journal-button:hover {
+    background-color: #fdf2f8;
+    transform: scale(1.05);
+}
+
+.logout-button {
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #dc2626;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.logout-button:hover {
+    background-color: #dc2626;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .home-title {
+        font-size: 2.5rem;
+    }
+
+    /* Stack vertically on small screens */
+    .home-container {
+        flex-direction: column;
+        padding: 1rem;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .home-content {
+        max-width: 100%;
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .journal-button-container {
+        position: fixed;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

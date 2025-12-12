@@ -1,0 +1,123 @@
+.mini-calendar {
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 320px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+}
+
+.mini-calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.mini-calendar-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin: 0;
+    text-align: center;
+    flex: 1;
+}
+
+.mini-calendar-nav {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #db2777;
+    padding: 0.5rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.mini-calendar-nav:hover {
+    background-color: rgba(219, 39, 119, 0.1);
+}
+
+.mini-calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.mini-calendar-weekday {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #666;
+    padding: 0.5rem 0;
+}
+
+.mini-calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 0.5rem;
+}
+
+.mini-calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    user-select: none;
+}
+
+.mini-calendar-day.empty {
+    cursor: default;
+    background-color: transparent;
+}
+
+.mini-calendar-day:not(.empty) {
+    background-color: rgba(219, 39, 119, 0.05);
+}
+
+.mini-calendar-day:not(.empty):hover {
+    background-color: rgba(219, 39, 119, 0.15);
+    transform: scale(1.05);
+}
+
+.mini-calendar-date {
+    font-weight: 500;
+    color: #333;
+    z-index: 1;
+}
+
+.mini-calendar-dot {
+    position: absolute;
+    bottom: 4px;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+.mini-calendar-day.has-entry .mini-calendar-date {
+    font-weight: 600;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .mini-calendar {
+        max-width: 100%;
+        padding: 1rem;
+    }
+
+    .mini-calendar-day {
+        font-size: 0.75rem;
+    }
+
+    .mini-calendar-title {
+        font-size: 1rem;
+    }
+}
