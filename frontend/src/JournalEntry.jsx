@@ -8,7 +8,7 @@ export default function JournalEntry() {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
-    const [mood, setMood] = useState("");
+    // const [mood, setMood] = useState("");
     const {backendUrl, userData, getUserData} = useContext(AuthContext);
 
     const email = userData.email;
@@ -29,20 +29,20 @@ export default function JournalEntry() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         
-        // Convert mood text to color
-        const getEmotionColor = (selectedMood) => {
-            switch (selectedMood) {
-                case "Happy": return "#F6FF00";
-                case "Peaceful": return "#FF9000";
-                case "Tired": return "#00C7FF";
-                case "Frustrated": return "#FF0000";
-                case "Sad": return "#000DFF";
-                case "Anxious": return "#00FF15";
-                default: return "#FFFF";
-            }
-        };
+        // // Convert mood text to color
+        // const getEmotionColor = (selectedMood) => {
+        //     switch (selectedMood) {
+        //         case "Happy": return "#F6FF00";
+        //         case "Peaceful": return "#FF9000";
+        //         case "Tired": return "#00C7FF";
+        //         case "Frustrated": return "#FF0000";
+        //         case "Sad": return "#000DFF";
+        //         case "Anxious": return "#00FF15";
+        //         default: return "#FFFF";
+        //     }
+        // };
         
-        const emotionColor = getEmotionColor(mood);
+        // const emotionColor = getEmotionColor(mood);
         
         try {
             const response = await fetch(backendUrl + '/api/journal/create-entry', {
@@ -54,7 +54,6 @@ export default function JournalEntry() {
                     title,
                     date: dateObj.toISOString(),
                     user_email: email,
-                    emotionColor: emotionColor,
                     content
                 }),
                 credentials: 'include'
@@ -62,6 +61,11 @@ export default function JournalEntry() {
             
             const data = await response.json();
             
+            if(!data.success) {
+                console.error('Failed to create journal entry:', data.message);
+                return;
+            }
+
             const update_response = await fetch(backendUrl + '/api/user/update-emotion', {
                 method: 'POST',
                 headers: {
@@ -70,18 +74,18 @@ export default function JournalEntry() {
                 body: JSON.stringify({
                     email: email,
                     userColor: userMood,
-                    addColor: emotionColor,
+                    addColor: data.emotionData.color,
                 }),
                 credentials: 'include'
             });
 
             const update_data = await update_response.json();
 
-            if(data.success && update_data.success) {
+            if(update_data.success) {
                 await getUserData(); // Refresh user data to get updated emotion color
                 navigate('/calendar');
             } else {
-                console.error('Failed to create journal entry:', data.message);
+                console.error('Failed to update emotion:', update_data.message);
             }
         } catch(error) {
             console.error('Failed to create journal entry:', error);
@@ -107,24 +111,6 @@ export default function JournalEntry() {
                             placeholder="What happened today?"
                             className="form-input"
                         />
-                    </div>
-
-                    <div className="form-group">
-                        <label htmlFor="mood">How are you feeling?</label>
-                        <select
-                            id="mood"
-                            value={mood}
-                            onChange={(e) => setMood(e.target.value)}
-                            className="form-select"
-                        >
-                            <option value="">Select your mood</option>
-                            <option value="Happy">😊 Happy</option>
-                            <option value="Peaceful">😌 Peaceful</option>
-                            <option value="Tired">😴 Tired</option>
-                            <option value="Frustrated">😤 Frustrated</option>
-                            <option value="Sad">😢 Sad</option>
-                            <option value="Anxious">😰 Anxious</option>
-                        </select>
                     </div>
 
                     <div className="form-group">

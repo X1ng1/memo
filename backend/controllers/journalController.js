@@ -1,15 +1,37 @@
 import journalModel from "../models/journalModel.js";
 import userModel from "../models/userModel.js";
+import { classifyEmotion } from "../services/emotionService.js";
 
 export const createEntry = async(req, res) => {
-    const {title, date, user_email, emotionColor, content} = req.body;
-    if (!title || !date || !user_email || !emotionColor || !content) {
+    const {title, date, user_email, content} = req.body;
+    if (!title || !date || !user_email || !content) {
         return res.json({success: false, message: 'Missing details'});
     }
     try {
-        const entry = new journalModel({title, date, user_email, emotionColor, content});
+        // Auto-classify emotion from journal content
+        const emotionData = await classifyEmotion(content);
+
+        const finalEmotionColor = emotionData.color;
+        
+        const entry = new journalModel({
+            title, 
+            date, 
+            user_email, 
+            emotionColor: finalEmotionColor, 
+            content,
+            emotion: emotionData.emotion,
+        });
+        
         await entry.save();
-        return res.json({success: true});
+        
+        return res.json({
+            success: true,
+            emotionData: {
+                emotion: emotionData.emotion,
+                confidence: emotionData.confidence,
+                color: emotionData.color
+            }
+        });
     } catch (error) {
         res.json({success: false, message: error.message});
     }

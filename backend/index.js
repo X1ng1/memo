@@ -10,6 +10,12 @@ import userRouter from './routes/userRoutes.js'
 // Load environment variables from config.env
 dotenv.config({ path: './.env' })
 
+// Verify environment variables are loaded
+console.log('Environment variables loaded:');
+console.log('- HUGGINGFACE_API_KEY:', process.env.HUGGINGFACE_API_KEY ? '✓ Set' : '✗ Missing');
+console.log('- PORT:', process.env.PORT);
+console.log('- NODE_ENV:', process.env.NODE_ENV);
+
 const app = express();
 const port = process.env.PORT || 5000;
 connectDB();
