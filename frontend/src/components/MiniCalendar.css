@@ -3,7 +3,8 @@
     border-radius: 12px;
     padding: 1.5rem;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    max-width: 320px;
+    width: 320px;
+    min-width: 320px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
 }
 
@@ -56,7 +57,9 @@
 .mini-calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     gap: 0.5rem;
+    min-height: 240px;
 }
 
 .mini-calendar-day {
@@ -65,10 +68,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 2px;
     position: relative;
     border-radius: 8px;
     font-size: 0.85rem;
     user-select: none;
+    padding: 4px;
 }
 
 .mini-calendar-day.empty {
@@ -82,16 +87,13 @@
 .mini-calendar-date {
     font-weight: 500;
     color: #333;
-    z-index: 1;
 }
 
 .mini-calendar-dot {
-    position: absolute;
-    bottom: 4px;
     width: 6px;
     height: 6px;
     border-radius: 50%;
-    z-index: 2;
+    margin-top: auto;
 }
 
 .mini-calendar-day.has-entry .mini-calendar-date {

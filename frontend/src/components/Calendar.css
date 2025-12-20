@@ -12,8 +12,12 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
-  min-height: 600px;
+  min-height: 0; /* allow the container to control height */
 }
+
+/* explicit min-heights per calendar size */
+.calendar-large .rbc-calendar { min-height: 600px; }
+.calendar-small .rbc-calendar { min-height: 320px; }
 
 .rbc-header {
   background-color: #fffd83;

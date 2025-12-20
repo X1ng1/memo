@@ -20,7 +20,14 @@ const app = express();
 const port = process.env.PORT || 5000;
 connectDB();
 
-const allowedOrigins = ['http://localhost:5173', 'http://localhost:5174']
+// Configure CORS for both development and production
+const allowedOrigins = [
+    'http://localhost:5173', 
+    'http://localhost:5174',
+    process.env.FRONTEND_URL // Production frontend URL from Vercel
+].filter(Boolean); // Remove undefined values
+
+console.log('Allowed CORS origins:', allowedOrigins);
 
 app.use(express.json());
 app.use(cookieParser());

@@ -256,6 +256,9 @@ export default function SavedEntry() {
                         <img src="/angry.webp" width={48} onClick={() => addSticker('/angry.webp')} style={{cursor: 'pointer'}} />
                         <img src="/watermelon.webp" width={48} onClick={() => addSticker('/watermelon.webp')} style={{cursor: 'pointer'}} />
                         <img src="/3-7.png" width={48} onClick={() => addSticker('/3-7.png')} style={{cursor: 'pointer'}} />
+                        <img src="/seele-yawn.webp" width={48} onClick={() => addSticker('/seele-yawn.webp')} style={{cursor: 'pointer'}} />
+                        <img src="/guinaifen.png" width={48} onClick={() => addSticker('/guinaifen.png')} style={{cursor: 'pointer'}} />
+                        <img src="/trash.png" width={48} onClick={() => addSticker('/trash.png')} style={{cursor: 'pointer'}} />
                     </div>
                     </>
                 )}

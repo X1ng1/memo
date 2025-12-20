@@ -1,40 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredericka+the+Great&display=swap');
+
 .home-container {
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
     align-items: center;
-    justify-content: space-between;
-    padding: 1rem;
-    position: relative;
-    background-image: url('/book-page.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: contain;
-    background-color: transparent;
+    justify-content: center;
     z-index: 0;
 }
 
-.home-content {
+/* Book container - 80% of screen */
+.book-container {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    flex-direction: row;
+    background-color: white;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    border-radius: 8px;
     position: relative;
+    overflow: hidden;
+}
+
+/* Center divider line */
+.book-container::before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, 
+        rgba(219, 39, 119, 0.1) 0%, 
+        rgba(59, 53, 56, 0.4) 50%, 
+        rgba(219, 39, 119, 0.1) 100%);
+    transform: translateX(-50%);
+    z-index: 10;
+}
+
+/* Book pages - each takes 50% */
+.book-page {
+    width: 50%;
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.left-page {
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.right-page {
+    justify-content: center;
+    align-items: center;
+    position: relative; /* allow absolute children positioned relative to this page */
+    height: 100%;
+}
+
+.home-content {
     z-index: 1;
     text-align: left;
-    max-width: 55%;
-    padding: 8rem;
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
 }
 
 .home-title {
-    font-size: 4rem;
+    font-size: 3rem;
     font-weight: bold;
-    color: rgb(255, 65, 170);
-    margin-bottom: 2rem;
+    /* color: rgb(255, 65, 170); */
+    margin-bottom: 1.5rem;
 }
 
 .home-description {
-    font-size: 1.25rem;
-    color: rgb(255, 65, 170);
-    margin-bottom: 3rem;
-    max-width: 28rem;
+    font-size: 1.1rem;
+    /* color: rgb(255, 65, 170); */
+    margin-bottom: 2rem;
     line-height: 1.6;
 }
 
@@ -43,16 +86,13 @@
 }
 
 .journal-button-container {
-    position: fixed;
-    right: 8rem;
-    top: 50%;
-    transform: translateY(-50%);
+    position: relative;
     z-index: 2;
 }
 
 .journal-button {
     background-color: white;
-    color: #db2777;
+    /* color: #db2777; */
     font-weight: bold;
     padding: 1rem 2rem;
     border-radius: 50px;
@@ -63,6 +103,7 @@
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
     font-size: 1rem;
+    margin-top: 2rem;
 }
 
 .journal-button:hover {
@@ -89,29 +130,130 @@
     color: white;
 }
 
+/* Dropdown emotion-color disctionary*/
+.dictionary {
+    position: absolute;
+    top: 2rem; /* distance from top of right page */
+    right: 2.5rem; /* distance from left edge of right page */
+    color: black;
+    z-index: 40;
+    font-size: 1.5rem;
+    font-family: "Fredericka the Great", serif;
+    font-weight: 400;
+    font-style: normal;
+    box-shadow: 8px 5px 15px 0px rgba(0,0,0,0.1);
+    padding: 1rem;
+    border-radius: 30px;
+}
+
+.dictionary-content {
+    font-size: 1rem;
+    display: none;
+    position: absolute;
+    margin-top: 1.5rem;
+    color: black;
+    min-width: 250px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.1);
+    padding: 12px 16px;
+    z-index: 10;
+    background-color: white;
+}
+
+.dictionary:hover .dictionary-content {
+    display: block;
+}
+
+.break {
+    background-color: black;
+    width: 110px;
+    height: 1px;
+}
+
+/* Recent entry display on right page - matches SavedEntry structure */
+.home-entry-display {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+}
+
+.home-entry-journal-container {
+    height: 65%;
+    width: 80%;
+    padding: 30px;
+    position: relative;
+    overflow-y: auto;
+    pointer-events: auto;
+}
+
+.recent-entry-header {
+    margin-bottom: 1rem;
+}
+
+.recent-entry-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.recent-entry-date {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+.recent-entry-content {
+    line-height: 1.6;
+    color: #333;
+    position: relative;
+    z-index: 1;
+}
+
+.recent-entry-content p {
+    margin: 0;
+    white-space: pre-wrap;
+}
+
+.no-entry-message {
+    color: #999;
+    font-style: italic;
+    text-align: center;
+    padding: 2rem;
+}
+
 @media (max-width: 768px) {
     .home-title {
-        font-size: 2.5rem;
+        font-size: 2rem;
     }
 
-    /* Stack vertically on small screens */
-    .home-container {
+    .book-container {
+        width: 95%;
+        height: 90%;
         flex-direction: column;
-        padding: 1rem;
-        justify-content: center;
+        overflow-y: auto;
+    }
+
+    /* Hide divider on mobile */
+    .book-container::before {
+        display: none;
+    }
+
+    .book-page {
+        width: 100%;
+        padding: 2rem;
+    }
+
+    .left-page, .right-page {
         align-items: center;
-    }
-
-    .home-content {
-        max-width: 100%;
         text-align: center;
-        padding: 0.5rem;
     }
 
-    .journal-button-container {
-        position: fixed;
-        bottom: 2rem;
-        left: 50%;
-        transform: translateX(-50%);
+    .home-description {
+        font-size: 1rem;
     }
 }

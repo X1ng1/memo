@@ -40,7 +40,8 @@ const CalendarView = ({
         events={events}
         startAccessor="start"
         endAccessor="end"
-        style={{ height }}
+        // choose a sensible height for small vs large
+        style={{ height: size === 'small' ? 320 : height }}
         selectable={true}
         onSelectSlot={onSelectSlot}
         onSelectEvent={onSelectEvent}
