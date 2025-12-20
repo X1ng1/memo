@@ -1,13 +1,17 @@
 .journal-page {
     min-height: 100vh;
+    width: 100vw;
     background-color: #fc83a8;
     padding: 2rem;
     display: flex;
     align-items: center;
+    justify-content: center; /* center journal-container horizontally */
 }
 
 .journal-container {
-    min-width: 30%;
+    width: 40%;
+    max-width: 900px; /* prevent it stretching too wide on large screens */
+    box-sizing: border-box; /* include padding in width calculations */
     margin: 0 auto;
     background-color: white;
     border-radius: 1rem;
@@ -132,6 +136,7 @@
     
     .journal-container {
         padding: 1.5rem;
+        width: 90%; /* mobile: use most of the screen */
     }
     
     .journal-date {

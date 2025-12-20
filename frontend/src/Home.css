@@ -11,8 +11,8 @@
 
 /* Book container - 80% of screen */
 .book-container {
-    width: 80%;
-    height: 80%;
+    width: 95%;
+    height: 95%;
     display: flex;
     flex-direction: row;
     background-color: white;
@@ -41,15 +41,16 @@
 /* Book pages - each takes 50% */
 .book-page {
     width: 50%;
-    padding: 4rem;
+    padding: 2.5rem;
     display: flex;
     flex-direction: column;
     position: relative;
+    overflow: auto;
 }
 
 .left-page {
-    justify-content: center;
-    align-items: flex-start;
+    /* justify-content: center; */
+    align-items: center;
 }
 
 .right-page {
@@ -72,6 +73,7 @@
     font-weight: bold;
     /* color: rgb(255, 65, 170); */
     margin-bottom: 1.5rem;
+    text-align: center;
 }
 
 .home-description {
@@ -102,7 +104,7 @@
     gap: 0.5rem;
     box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease;
-    font-size: 1rem;
+    font-size: 1.5rem;
     margin-top: 2rem;
 }
 
@@ -196,13 +198,13 @@
 }
 
 .recent-entry-header h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     font-weight: 600;
     margin-bottom: 0.5rem;
 }
 
 .recent-entry-date {
-    font-size: 0.9rem;
+    font-size: 1.2rem;
     color: #666;
     font-style: italic;
 }
@@ -212,6 +214,7 @@
     color: #333;
     position: relative;
     z-index: 1;
+    font-size: 20px;
 }
 
 .recent-entry-content p {
