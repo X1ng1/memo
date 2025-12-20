@@ -1,0 +1,37 @@
+.entire-screen {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.editable-area {
+    width: 80%;
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+}
+
+.journal-container {
+    height: 65%;
+    width: 80%;
+    padding: 30px;
+}
+
+.back-button {
+    text-decoration: none;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    display: inline-block;
+    transition: color 0.3s;
+    background-color: transparent;
+    border: none;
+}
+
+.entry-content {
+    font-size: 20px;
+}

@@ -67,24 +67,16 @@
     justify-content: center;
     position: relative;
     border-radius: 8px;
-    cursor: pointer;
     font-size: 0.85rem;
-    transition: all 0.2s ease;
     user-select: none;
 }
 
 .mini-calendar-day.empty {
-    cursor: default;
     background-color: transparent;
 }
 
 .mini-calendar-day:not(.empty) {
     background-color: rgba(219, 39, 119, 0.05);
-}
-
-.mini-calendar-day:not(.empty):hover {
-    background-color: rgba(219, 39, 119, 0.15);
-    transform: scale(1.05);
 }
 
 .mini-calendar-date {

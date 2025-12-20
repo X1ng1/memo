@@ -8,6 +8,7 @@ export default function JournalEntry() {
     const navigate = useNavigate();
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
+    const [loading, setLoading] = useState(false);
     // const [mood, setMood] = useState("");
     const {backendUrl, userData, getUserData} = useContext(AuthContext);
 
@@ -28,22 +29,8 @@ export default function JournalEntry() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        
-        // // Convert mood text to color
-        // const getEmotionColor = (selectedMood) => {
-        //     switch (selectedMood) {
-        //         case "Happy": return "#F6FF00";
-        //         case "Peaceful": return "#FF9000";
-        //         case "Tired": return "#00C7FF";
-        //         case "Frustrated": return "#FF0000";
-        //         case "Sad": return "#000DFF";
-        //         case "Anxious": return "#00FF15";
-        //         default: return "#FFFF";
-        //     }
-        // };
-        
-        // const emotionColor = getEmotionColor(mood);
-        
+        setLoading(true);
+
         try {
             const response = await fetch(backendUrl + '/api/journal/create-entry', {
                 method: 'POST',
@@ -126,9 +113,14 @@ export default function JournalEntry() {
                     </div>
 
                     <div className="form-actions">
-                        <button type="submit" className="save-button">
-                            💾 Save Entry
-                        </button>
+                        {!loading ? 
+                            <button type="submit" className="save-button">
+                                Save Entry
+                            </button> :
+                            <button className="save-button">
+                                Loading...
+                            </button>
+                        }
                     </div>
                 </form>
             </div>

@@ -1,15 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import moment from 'moment';
-import '../styles/MiniCalendar.css';
+import './MiniCalendar.css';
 
 /**
  * Compact calendar component for display on the Home page
  * Shows month view with colored dots under dates that have journal entries
  */
 const MiniCalendar = () => {
-  const navigate = useNavigate();
   const { backendUrl } = useContext(AuthContext);
   const [journalEntries, setJournalEntries] = useState([]);
   const [currentDate, setCurrentDate] = useState(new Date());
@@ -44,13 +42,6 @@ const MiniCalendar = () => {
   const hasEntry = (date) => {
     const dateStr = moment(date).format('YYYY-MM-DD');
     return journalEntries.some(e => moment(e.date).format('YYYY-MM-DD') === dateStr);
-  };
-
-  // Handle clicking on a date
-  const handleDateClick = (day) => {
-    const date = new Date(currentDate.getFullYear(), currentDate.getMonth(), day);
-    const dateStr = moment(date).format('YYYY-MM-DD');
-    navigate(`/journal/${dateStr}`);
   };
 
   // Handle month navigation
@@ -114,7 +105,6 @@ const MiniCalendar = () => {
             <div
               key={index}
               className={`mini-calendar-day ${!day ? 'empty' : ''} ${hasEvent ? 'has-entry' : ''}`}
-              onClick={() => day && handleDateClick(day)}
             >
               {day && (
                 <>

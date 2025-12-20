@@ -51,7 +51,7 @@ export default function CalendarPage() {
     // Handle clicking an event on the calendar
     const handleSelectEvent = (event) => {
         const dateStr = moment(event.start).format('YYYY-MM-DD');
-        navigate(`/journal/${dateStr}`);
+        navigate(`/saved-entry/${dateStr}`);
     };
 
     // Handle month/date navigation
@@ -62,7 +62,14 @@ export default function CalendarPage() {
     // Handle drilling down into a date (when clicking day header)
     const handleDrillDown = (date) => {
         const dateStr = moment(date).format('YYYY-MM-DD');
-        navigate(`/journal/${dateStr}`);
+        if (journalEntries.some(entry =>
+            moment(entry.start).format('YYYY-MM-DD') === dateStr
+        )) {
+            navigate(`/saved-entry/${dateStr}`)
+        }
+        else {
+            navigate(`/journal/${dateStr}`);
+        }
     };
 
     // Style individual events based on emotion color

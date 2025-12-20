@@ -2,10 +2,12 @@
     min-height: 100vh;
     background-color: #fc83a8;
     padding: 2rem;
+    display: flex;
+    align-items: center;
 }
 
 .journal-container {
-    max-width: 800px;
+    min-width: 30%;
     margin: 0 auto;
     background-color: white;
     border-radius: 1rem;

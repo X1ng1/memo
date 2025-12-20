@@ -7,6 +7,7 @@ const journalSchema = new mongoose.Schema({
     emotionColor: {type: String, default: "#FFFF"},
     content: {type: String, required: true},
     emotion: {type: String, default: 'neutral'}, // anger, disgust, fear, joy, neutral, sadness, surprise
+    stickers: {type: Array, default: []}, // [{id, src, x, y, width, height, rotate, z}]
 });
 
 const journalModel = mongoose.models.journal || mongoose.model('journal', journalSchema);
