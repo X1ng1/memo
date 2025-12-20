@@ -13,7 +13,32 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: transparent;
+}
+
+/* Edit mode styling - only visible when .editing class is present */
+.editable-area.editing {
+    background-color: rgba(0,0,0,0.08);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    border-color: rgba(0,0,0,0.25);
+    border-style: dashed;
+    border-radius: 15px;
+}
+
+.editable-area .sticker-panel {
+    display: none;
+}
+.editable-area.editing .sticker-panel {
+    display: block;
+}
+
+/* Visual helper for journal container when editing */
+.journal-container {
+    transition: box-shadow .15s, transform .15s;
+}
+.editable-area.editing .journal-container {
+    outline: 3px dashed rgba(0,0,0,0.12);
+    outline-offset: 8px;
 }
 
 .journal-container {
