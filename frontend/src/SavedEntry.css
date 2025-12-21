@@ -65,3 +65,16 @@
 p {
     margin-bottom: 1rem;
 }
+
+.edit-button {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    right: 0;
+    text-align: left;
+    padding: 1rem;
+    z-index: 3;
+    font-size: 20px;
+    border: none;
+    background-color: transparent;
+}

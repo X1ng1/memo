@@ -99,6 +99,21 @@ export default function SavedEntry() {
         return () => window.removeEventListener('resize', handleResize);
     }, [stickersPercent]);
 
+    // Delete sticker on backspace key press
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Backspace' && selectedId !== null && isEditing) {
+                e.preventDefault();
+                setStickers(prev => prev.filter(s => s.id !== selectedId));
+                setStickersPercent(prev => prev.filter(s => s.id !== selectedId));
+                setSelectedId(null);
+            }
+        };
+
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
+    }, [selectedId, isEditing]);
+
     const addSticker = (src) => {
         const id = Date.now();
         setStickers(prev => [...prev, { id, src, x: 50, y: 50, width: 100, height: 100, rotate: 0, z: prev.length+1}]);
@@ -163,24 +178,24 @@ export default function SavedEntry() {
         );
     }
 
+    // Determine readable text color based on entry background
+    const entryBg = entry.emotionColor || '#ffffff';
+    const normalizedBg = String(entryBg).toLowerCase().trim();
+    const isWhiteBg = normalizedBg === '#ffffff' || normalizedBg === '#fff' || normalizedBg === 'white';
+    const textColor = isWhiteBg ? '#000000' : entry.emotionColor;
+
     return (
-        <div className='entire-screen' style={{backgroundColor: entry.emotionColor}}>
+        <div className='entire-screen' style={{backgroundColor: entryBg, color: textColor}}>
             <div className={`editable-area ${isEditing ? 'editing' : ''}`} ref={editableRef}>
                 <div className="journal-container" ref={journalContainerRef} style={{position: 'relative'}}>
                     <div className="entry-header">
-                        <Link to="/calendar" className="back-button" style={{color: entry.emotionColor}}>← Back to Calendar</Link>
-                        <h1>{entry.title}</h1>
-                        <h2>{new Date(entry.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</h2>
+                        <Link to="/calendar" className="back-button" style={{color: textColor}}>← Back to Calendar</Link>
+                        <h1 style={{color: 'black'}}>{entry.title}</h1>
+                        <h2 style={{color: 'black'}}>{new Date(entry.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</h2>
                     </div>
-                    <div className="entry-content">
+                    <div className="entry-content" style={{color: 'black'}}>
                         <p>Emotion: {entry.emotion}</p>
                         <div>{entry.content}</div>
-                    </div>
-                    <div>
-                        {!isEditing ? 
-                            <button onClick={() => setIsEditing(true)} className="back-button" style={{color: entry.emotionColor}}>Edit</button> :
-                            <button onClick={async() => { await saveStickers(); setIsEditing(false); }} className="back-button" style={{color: entry.emotionColor}}>Done</button>
-                        }
                     </div>
 
                     {/* render stickers inside journal-container */}
@@ -247,6 +262,13 @@ export default function SavedEntry() {
                         setSelectedId(id);
                         }}
                     />
+                    
+                    <div>
+                        {!isEditing ? 
+                            <button onClick={() => setIsEditing(true)} className="edit-button" style={{color: textColor}}>Edit</button> :
+                            <button onClick={async() => { await saveStickers(); setIsEditing(false); }} className="edit-button" style={{color: textColor}}>Done</button>
+                        }
+                    </div>
                 </div>
                 {isEditing && (
                     <>
