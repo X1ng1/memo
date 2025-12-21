@@ -18,7 +18,7 @@ export default function Login() {
         if (loading) return; // Prevent double submission
         
         setLoading(true);
-        setError(null); // Clear previous errors
+        setError(null); 
         
         try {
             const response = await fetch(backendUrl + '/api/auth/login', {
@@ -37,7 +37,7 @@ export default function Login() {
                 await getUserData();
                 console.log('User data fetched, navigating...');
                 
-                // Use replace to prevent back button issues
+                
                 navigate('/', { replace: true });
             } else {
                 setError('Invalid email/password');
