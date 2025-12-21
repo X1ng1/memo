@@ -34,14 +34,14 @@ const MiniCalendar = () => {
   // Get emotion color for a given date
   const getDateColor = (date) => {
     const dateStr = moment(date).format('YYYY-MM-DD');
-    const entry = journalEntries.find(e => moment(e.date).format('YYYY-MM-DD') === dateStr);
+    const entry = journalEntries.find(e => moment.utc(e.date).format('YYYY-MM-DD') === dateStr);
     return entry?.emotionColor || null;
   };
 
   // Check if date has an entry
   const hasEntry = (date) => {
     const dateStr = moment(date).format('YYYY-MM-DD');
-    return journalEntries.some(e => moment(e.date).format('YYYY-MM-DD') === dateStr);
+    return journalEntries.some(e => moment.utc(e.date).format('YYYY-MM-DD') === dateStr);
   };
 
   // Handle month navigation
