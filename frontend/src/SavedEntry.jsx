@@ -83,7 +83,6 @@ export default function SavedEntry() {
         }
     }, [isEditing, selectedId, stickers]);
 
-    // Resize listener: recalculate positions from percentages
     useEffect(() => {
         const handleResize = () => {
             if (!journalContainerRef.current || stickersPercent.length === 0) return;
