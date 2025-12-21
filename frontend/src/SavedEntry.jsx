@@ -38,18 +38,6 @@ export default function SavedEntry() {
                         // Load stickers from entry if they exist
                         if (data.entry.stickers && Array.isArray(data.entry.stickers)) {
                             setStickersPercent(data.entry.stickers);
-                            // Convert to pixels on load
-                            if (journalContainerRef.current) {
-                                const rect = journalContainerRef.current.getBoundingClientRect();
-                                const stickersInPx = data.entry.stickers.map(s => ({
-                                    ...s,
-                                    x: percentToPx(s.x, rect.width),
-                                    y: percentToPx(s.y, rect.height),
-                                    width: percentToPx(s.width, rect.width),
-                                    height: percentToPx(s.height, rect.width)
-                                }));
-                                setStickers(stickersInPx);
-                            }
                         }
                     } else {
                         console.log('No entry found for date:', date);
@@ -66,6 +54,21 @@ export default function SavedEntry() {
 
         fetchEntry();
     }, [backendUrl, date]);
+
+    // Convert stickers from percentages to pixels when stickersPercent changes or container is ready
+    useEffect(() => {
+        if (!journalContainerRef.current || stickersPercent.length === 0) return;
+        
+        const rect = journalContainerRef.current.getBoundingClientRect();
+        const stickersInPx = stickersPercent.map(s => ({
+            ...s,
+            x: percentToPx(s.x, rect.width),
+            y: percentToPx(s.y, rect.height),
+            width: percentToPx(s.width, rect.width),
+            height: percentToPx(s.height, rect.width)
+        }));
+        setStickers(stickersInPx);
+    }, [stickersPercent, entry]);
 
     useEffect(() => {
         if (isEditing && journalContainerRef.current) {
