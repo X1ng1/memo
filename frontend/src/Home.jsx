@@ -141,7 +141,8 @@ export default function Home() {
                                         <p className='recent-entry-date'>
                                             {(() => {
                                                 // Parse as UTC to avoid timezone issues
-                                                const utcDate = new Date(recentEntry.date + 'T00:00:00Z');
+                                                const dateStr = recentEntry.date.includes('T') ? recentEntry.date : recentEntry.date + 'T00:00:00Z';
+                                                const utcDate = new Date(dateStr);
                                                 // Create a local date with the same year/month/day
                                                 const localDate = new Date(utcDate.getUTCFullYear(), utcDate.getUTCMonth(), utcDate.getUTCDate());
                                                 return localDate.toLocaleDateString('en-US', {
