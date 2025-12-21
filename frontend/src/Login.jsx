@@ -9,9 +9,17 @@ export default function Login() {
     const {backendUrl, setIsLoggedin, getUserData, userData} = useContext(AuthContext);
     const navigate = useNavigate();
     const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        e.stopPropagation();
+        
+        if (loading) return; // Prevent double submission
+        
+        setLoading(true);
+        setError(null); // Clear previous errors
+        
         try {
             const response = await fetch(backendUrl + '/api/auth/login', {
                 method: 'POST',
@@ -25,18 +33,21 @@ export default function Login() {
             const data = await response.json();
             
             if(data.success) {
+                console.log('Login successful, fetching user data...');
                 await getUserData();
-                // Small delay to ensure state updates propagate
-                setTimeout(() => {
-                    navigate('/');
-                }, 100);
-                console.log('Login successful');
+                console.log('User data fetched, navigating...');
+                
+                // Use replace to prevent back button issues
+                navigate('/', { replace: true });
             } else {
                 setError('Invalid email/password');
                 console.error('Login failed:', data.message);
+                setLoading(false);
             }
         } catch(error) {
             console.error('Login error:', error);
+            setError('Network error. Please try again.');
+            setLoading(false);
         }
 
     };
@@ -77,7 +88,12 @@ export default function Login() {
                             onChange={(e) => setPassword(e.target.value)}
                         />
                     </label>
-                    <input className="submit" type='submit' value="Log in" />
+                    <input 
+                        className="submit" 
+                        type='submit' 
+                        value={loading ? "Logging in..." : "Log in"}
+                        disabled={loading}
+                    />
                 </form>
                 <div>
                     <p>Don't have an account? <Link to="/register">Sign Up</Link></p>
