@@ -139,11 +139,17 @@ export default function Home() {
                                             {recentEntry.title}
                                         </h2>
                                         <p className='recent-entry-date'>
-                                            {new Date(recentEntry.date).toLocaleDateString('en-US', {
-                                                year: 'numeric',
-                                                month: 'long',
-                                                day: 'numeric'
-                                            })}
+                                            {(() => {
+                                                // Parse as UTC to avoid timezone issues
+                                                const utcDate = new Date(recentEntry.date + 'T00:00:00Z');
+                                                // Create a local date with the same year/month/day
+                                                const localDate = new Date(utcDate.getUTCFullYear(), utcDate.getUTCMonth(), utcDate.getUTCDate());
+                                                return localDate.toLocaleDateString('en-US', {
+                                                    year: 'numeric',
+                                                    month: 'long',
+                                                    day: 'numeric'
+                                                });
+                                            })()}
                                         </p>
                                     </div>
                                     <div className='recent-entry-content'>
