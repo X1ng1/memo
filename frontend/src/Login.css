@@ -82,4 +82,70 @@ p {
     height: 100%;
     width: 50%;
     border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    color: white;
+}
+
+.intro h1 {
+    font-size: 70px;
+    letter-spacing: 0.5rem;
+    margin-bottom: 6rem;
+}
+
+.intro p {
+    font-size: 25px;
+    opacity: 80%;
+}
+
+.home-description {
+    font-size: 1.1rem;
+    /* color: rgb(255, 65, 170); */
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+    .book {
+        width: 95%;
+        height: auto;
+        flex-direction: column;
+        min-height: 400px;
+    }
+
+    .right-side {
+        display: none;
+    }
+
+    .login-form {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    input {
+        width: 100%;
+        max-width: 300px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    .submit {
+        width: 100%;
+        max-width: 250px;
+        padding: 12px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    label {
+        width: 100%;
+        max-width: 300px;
+    }
 }

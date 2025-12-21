@@ -98,15 +98,12 @@ export default function Home() {
                     <h1 className="home-title">
                         Welcome Home, <br/> {name}
                     </h1>
-                    <p className="home-description">
-                        Your personal space to organize thoughts, memories, and moments.
-                    </p>
                     <div className="mini-calendar-wrapper">
                         <MiniCalendar />
                     </div>
                     <div className="journal-button-container">
                         <Link style={{color: color}} to="/calendar" className="journal-button">
-                            Sart Journaling
+                            Start Journaling
                         </Link>
                     </div>
                 </div>

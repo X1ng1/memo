@@ -25,9 +25,11 @@ export default function Login() {
             const data = await response.json();
             
             if(data.success) {
-                setIsLoggedin(true);
                 await getUserData();
-                navigate('/');
+                // Small delay to ensure state updates propagate
+                setTimeout(() => {
+                    navigate('/');
+                }, 100);
                 console.log('Login successful');
             } else {
                 setError('Invalid email/password');
@@ -42,7 +44,13 @@ export default function Login() {
     return (
         <div className='login-container'>
             <div className='right-side'>
-
+                <div className='intro'>
+                    <h1>MEMO</h1>
+                    <p className="home-description">
+                        Your personal space to organize thoughts, memories, and moments.
+                    </p>
+                    <p>Track your emotions through journaling and lift your mood with cute stickers!</p>
+                </div>
             </div>
             <div className='login-form'>
                 {error && (

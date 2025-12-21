@@ -203,6 +203,7 @@ export default function SavedEntry() {
                     {/* render stickers inside journal-container */}
                     {stickers.map(s => (
                         <img
+                        className="sticker"
                         key={s.id}
                         data-sticker-id={s.id}
                         src={s.src}
@@ -275,14 +276,15 @@ export default function SavedEntry() {
                 {isEditing && (
                     <>
                     {/* sticker thumbnails / picker */}
-                    <div style={{position: 'absolute', left: 8, top: 8, zIndex: 200, display: 'flex', flexDirection: 'column', gap: '8px'}}>
-                        <img src="/tried.png" width={48} onClick={() => addSticker('/tried.png')} style={{cursor: 'pointer'}} />
-                        <img src="/angry.webp" width={48} onClick={() => addSticker('/angry.webp')} style={{cursor: 'pointer'}} />
-                        <img src="/watermelon.webp" width={48} onClick={() => addSticker('/watermelon.webp')} style={{cursor: 'pointer'}} />
-                        <img src="/3-7.png" width={48} onClick={() => addSticker('/3-7.png')} style={{cursor: 'pointer'}} />
-                        <img src="/seele-yawn.webp" width={48} onClick={() => addSticker('/seele-yawn.webp')} style={{cursor: 'pointer'}} />
-                        <img src="/guinaifen.png" width={48} onClick={() => addSticker('/guinaifen.png')} style={{cursor: 'pointer'}} />
-                        <img src="/trash.png" width={48} onClick={() => addSticker('/trash.png')} style={{cursor: 'pointer'}} />
+                    <div  className='sticker-chooser'>
+                        <h2>Stickers</h2>
+                        <img src="/tried.png" width={80} onClick={() => addSticker('/tried.png')} style={{cursor: 'pointer'}} />
+                        <img src="/angry.webp" width={80} onClick={() => addSticker('/angry.webp')} style={{cursor: 'pointer'}} />
+                        <img src="/watermelon.webp" width={80} onClick={() => addSticker('/watermelon.webp')} style={{cursor: 'pointer'}} />
+                        <img src="/3-7.png" width={80} onClick={() => addSticker('/3-7.png')} style={{cursor: 'pointer'}} />
+                        <img src="/seele-yawn.webp" width={80} onClick={() => addSticker('/seele-yawn.webp')} style={{cursor: 'pointer'}} />
+                        <img src="/guinaifen.png" width={80} onClick={() => addSticker('/guinaifen.png')} style={{cursor: 'pointer'}} />
+                        <img src="/trash.png" width={80} onClick={() => addSticker('/trash.png')} style={{cursor: 'pointer'}} />
                     </div>
                     </>
                 )}

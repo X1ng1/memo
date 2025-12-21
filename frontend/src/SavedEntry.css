@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Fredericka+the+Great&family=Indie+Flower&display=swap');
+
 .entire-screen {
     width: 100vw;
     height: 100vh;
@@ -75,4 +77,21 @@ p {
     font-size: 20px;
     border: none;
     background-color: transparent;
+}
+
+.sticker-chooser {
+    position: absolute;
+    top: 40px;
+    left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.sticker-chooser h2 {
+    color: white;
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: bold;
+    font-size: 35px;
 }

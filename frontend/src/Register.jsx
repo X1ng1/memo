@@ -40,6 +40,13 @@ export default function Register() {
     return (
         <div className='login-container'>
             <div className='right-side'>
+                <div className='intro'>
+                    <h1>MEMO</h1>
+                    <p className="home-description">
+                        Your personal space to organize thoughts, memories, and moments.
+                    </p>
+                    <p>Track your emotions through journaling and lift your mood with cute stickers!</p>
+                </div>
             </div>
             <div className='login-form'>
                 <h1>Sign Up</h1>
