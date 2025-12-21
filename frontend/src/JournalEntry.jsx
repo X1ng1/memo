@@ -39,7 +39,7 @@ export default function JournalEntry() {
                 },
                 body: JSON.stringify({
                     title,
-                    date: dateObj.toISOString(),
+                    date: date, // Send as YYYY-MM-DD string to avoid timezone issues
                     user_email: email,
                     content
                 }),

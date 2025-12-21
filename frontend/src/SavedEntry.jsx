@@ -170,7 +170,7 @@ export default function SavedEntry() {
                     <div className="entry-header">
                         <Link to="/calendar" className="back-button" style={{color: entry.emotionColor}}>← Back to Calendar</Link>
                         <h1>{entry.title}</h1>
-                        <h2>{new Date(entry.date).toLocaleDateString()}</h2>
+                        <h2>{new Date(entry.date).toLocaleDateString('en-US', { timeZone: 'UTC' })}</h2>
                     </div>
                     <div className="entry-content">
                         <p>Emotion: {entry.emotion}</p>

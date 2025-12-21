@@ -8,9 +8,10 @@ export const createEntry = async(req, res) => {
         return res.json({success: false, message: 'Missing details'});
     }
     try {
-        // Normalize the date to start of day to ensure consistent comparison
-        const dateObj = new Date(date);
-        dateObj.setHours(0, 0, 0, 0);
+        // Parse date as YYYY-MM-DD and create as UTC to avoid timezone issues
+        // Input should be in format YYYY-MM-DD
+        const [year, month, day] = date.split('-').map(Number);
+        const dateObj = new Date(Date.UTC(year, month - 1, day, 0, 0, 0, 0));
 
         // Check if an entry already exists for this user and date
         const existingEntry = await journalModel.findOne({
@@ -34,6 +35,36 @@ export const createEntry = async(req, res) => {
             });
             
             await entry.save();
+            
+            // Update emotion statistics for this month/year
+            const user = await userModel.findOne({ email: user_email });
+            if (user) {
+                const year = dateObj.getFullYear();
+                const month = dateObj.getMonth() + 1; // 1-12
+                const emotion = emotionData.emotion;
+                
+                // Find existing month/year counts
+                const existingCountIndex = user.emotionCount.findIndex(
+                    count => count.year === year && count.month === month
+                );
+                
+                if (existingCountIndex !== -1) {
+                    const emotions = user.emotionCount[existingCountIndex].emotions || new Map();
+                    const currentCount = emotions.get(emotion) || 0;
+                    emotions.set(emotion, currentCount + 1);
+                    user.emotionCount[existingCountIndex].emotions = emotions;
+                } else {
+                    const emotions = new Map();
+                    emotions.set(emotion, 1);
+                    user.emotionCount.push({
+                        year,
+                        month,
+                        emotions
+                    });
+                }
+                
+                await user.save();
+            }
             
             return res.json({
                 success: true,

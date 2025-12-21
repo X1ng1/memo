@@ -21,15 +21,25 @@ export default function CalendarPage() {
                 const data = await response.json();
                 if (data.success) {
                     // Transform entries to calendar events with emotion colors
-                    const events = data.entries.map(entry => ({
-                        id: entry._id,
-                        title: entry.title,
-                        start: new Date(entry.date),
-                        end: new Date(entry.date),
-                        allDay: true,
-                        emotionColor: entry.emotionColor,
-                        resource: entry
-                    }));
+                    const events = data.entries.map(entry => {
+                        // Parse UTC date and create local date with same year/month/day
+                        const utcDate = new Date(entry.date);
+                        const localDate = new Date(
+                            utcDate.getUTCFullYear(),
+                            utcDate.getUTCMonth(),
+                            utcDate.getUTCDate()
+                        );
+                        
+                        return {
+                            id: entry._id,
+                            title: entry.title,
+                            start: localDate,
+                            end: localDate,
+                            allDay: true,
+                            emotionColor: entry.emotionColor,
+                            resource: entry
+                        };
+                    });
                     setJournalEntries(events);
                 }
             } catch (error) {
@@ -44,7 +54,16 @@ export default function CalendarPage() {
     const handleSelectSlot = ({ start, action }) => {
         if (action === 'select' || action === 'click') {
             const dateStr = moment(start).format('YYYY-MM-DD');
-            navigate(`/journal/${dateStr}`);
+            // Check if entry exists for this date
+            const hasEntry = journalEntries.some(entry =>
+                moment(entry.start).format('YYYY-MM-DD') === dateStr
+            );
+            
+            if (hasEntry) {
+                navigate(`/saved-entry/${dateStr}`);
+            } else {
+                navigate(`/journal/${dateStr}`);
+            }
         }
     };
 
@@ -75,7 +94,7 @@ export default function CalendarPage() {
     // Style individual events based on emotion color
     const eventStyleGetter = (event) => {
         const style = {
-            backgroundColor: event.emotionColor || '#fcd00c',
+            backgroundColor: event.emotionColor !== '#ffffff' ? event.emotionColor : '#000000',
             borderRadius: '6px',
             opacity: 0.8,
             color: 'white',

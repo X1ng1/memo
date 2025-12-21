@@ -8,10 +8,19 @@ export default function Home() {
     const { userData, isLoggedin, logout, backendUrl } = useContext(AuthContext);
     const navigate = useNavigate();
     const name = userData && userData.name ? userData.name : (isLoggedin ? 'Loading...' : 'Guest');
-    const color = userData.emotionColor;
     const [recentEntry, setRecentEntry] = useState(null);
     const [stickers, setStickers] = useState([]);
     const entryContainerRef = useRef(null);
+
+    // Check if color is white and use black instead for better contrast
+    const rawColor = userData?.emotionColor;
+    console.log('Raw emotion color from userData:', rawColor);
+    
+    const normalizedColor = rawColor?.toLowerCase().trim();
+    const isWhite = normalizedColor === '#ffffffff' || normalizedColor === '#fff' || normalizedColor === 'white';
+    const color = (rawColor && isWhite) ? '#000000' : (rawColor || '#000000');
+    
+    console.log('Final color being used:', color, 'isWhite:', isWhite);
 
     const handleLogOut = async() => {
         await logout();
@@ -122,7 +131,13 @@ export default function Home() {
                             {recentEntry ? (
                                 <>
                                     <div className='recent-entry-header'>
-                                        <h2 style={{color: recentEntry.emotionColor || color}}>{recentEntry.title}</h2>
+                                        <h2 style={{
+                                            color: (recentEntry.emotionColor && String(recentEntry.emotionColor).toLowerCase() !== '#ffffff' && String(recentEntry.emotionColor).toLowerCase() !== '#fff' && String(recentEntry.emotionColor).toLowerCase() !== 'white')
+                                                ? recentEntry.emotionColor
+                                                : '#000000'
+                                        }}>
+                                            {recentEntry.title}
+                                        </h2>
                                         <p className='recent-entry-date'>
                                             {new Date(recentEntry.date).toLocaleDateString('en-US', {
                                                 year: 'numeric',
@@ -150,9 +165,9 @@ export default function Home() {
                                                 zIndex: s.z,
                                                 pointerEvents: 'none',
                                                 userSelect: 'none'
-                                            }}
+                                            }}                            
                                             draggable={false}
-                                        />
+            />
                                     ))}
                                 </>
                             ) : (
