@@ -16,7 +16,6 @@
     background-color: transparent;
 }
 
-/* Edit mode styling - only visible when .editing class is present */
 .editable-area.editing {
     background-color: rgba(0,0,0,0.08);
     box-shadow: 0 8px 24px rgba(0,0,0,0.18);
@@ -32,7 +31,6 @@
     display: block;
 }
 
-/* Visual helper for journal container when editing */
 .journal-container {
     transition: box-shadow .15s, transform .15s;
 }

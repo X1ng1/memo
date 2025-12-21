@@ -9,6 +9,7 @@ export default function JournalEntry() {
     const [title, setTitle] = useState("");
     const [content, setContent] = useState("");
     const [loading, setLoading] = useState(false);
+    const [errorModal, setErrorModal] = useState(null);
     // const [mood, setMood] = useState("");
     const {backendUrl, userData, getUserData} = useContext(AuthContext);
 
@@ -31,6 +32,18 @@ export default function JournalEntry() {
         e.preventDefault();
         setLoading(true);
 
+        // Validate inputs
+        if (!title.trim()) {
+            setLoading(false);
+            setErrorModal('Please enter a title for your journal entry');
+            return;
+        }
+        if (!content.trim()) {
+            setLoading(false);
+            setErrorModal('Please write some content for your journal entry');
+            return;
+        }
+
         try {
             const response = await fetch(backendUrl + '/api/journal/create-entry', {
                 method: 'POST',
@@ -49,6 +62,7 @@ export default function JournalEntry() {
             const data = await response.json();
             
             if(!data.success) {
+                setLoading(false);
                 console.error('Failed to create journal entry:', data.message);
                 return;
             }
@@ -69,7 +83,7 @@ export default function JournalEntry() {
             const update_data = await update_response.json();
 
             if(update_data.success) {
-                await getUserData(); // Refresh user data to get updated emotion color
+                await getUserData();
                 navigate('/calendar');
             } else {
                 console.error('Failed to update emotion:', update_data.message);
@@ -124,6 +138,18 @@ export default function JournalEntry() {
                     </div>
                 </form>
             </div>
+
+            {errorModal && (
+                <div className="modal-overlay" onClick={() => setErrorModal(null)}>
+                    <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+                        <h3>Error</h3>
+                        <p>{errorModal}</p>
+                        <button onClick={() => setErrorModal(null)} className="modal-close-button">
+                            OK
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 }

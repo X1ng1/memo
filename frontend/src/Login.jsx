@@ -8,6 +8,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const {backendUrl, setIsLoggedin, getUserData, userData} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -29,6 +30,7 @@ export default function Login() {
                 navigate('/');
                 console.log('Login successful');
             } else {
+                setError('Invalid email/password');
                 console.error('Login failed:', data.message);
             }
         } catch(error) {
@@ -43,6 +45,14 @@ export default function Login() {
 
             </div>
             <div className='login-form'>
+                {error && (
+                    <p style={{
+                        backgroundColor: 'red',
+                        color: 'white',
+                        padding: 10
+                    }}>{error}</p>
+                )}
+
                 <h1>Log In</h1>
                 <form onSubmit={handleSubmit}>
                     <label>Email:

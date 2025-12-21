@@ -9,6 +9,7 @@ export default function Register() {
     const [name, setName] = useState('');
     const {backendUrl, setIsLoggedin} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [error, setError] = useState(null);
 
     const handleSubmit = async(e) => {
         e.preventDefault();
@@ -28,6 +29,7 @@ export default function Register() {
                 setIsLoggedin(true);
                 navigate('/');
             } else {
+                setError('Invalid email/password');
                 console.error('Registration failed:', data.message);
             }
         } catch(error) {
@@ -38,7 +40,6 @@ export default function Register() {
     return (
         <div className='login-container'>
             <div className='right-side'>
-
             </div>
             <div className='login-form'>
                 <h1>Sign Up</h1>
