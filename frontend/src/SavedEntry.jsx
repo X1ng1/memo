@@ -268,8 +268,8 @@ export default function SavedEntry() {
                     
                     <div>
                         {!isEditing ? 
-                            <button onClick={() => setIsEditing(true)} className="edit-button" style={{color: textColor}}>Edit</button> :
-                            <button onClick={async() => { await saveStickers(); setIsEditing(false); }} className="edit-button" style={{color: textColor}}>Done</button>
+                            <button onClick={() => setIsEditing(true)} className="edit-button" style={{backgroundColor: textColor}}>Edit</button> :
+                            <button onClick={async() => { await saveStickers(); setIsEditing(false); }} className="edit-button" style={{backgroundColor: textColor}}>Done</button>
                         }
                     </div>
                 </div>

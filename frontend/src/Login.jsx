@@ -57,11 +57,13 @@ export default function Login() {
             <div className='right-side'>
                 <div className='intro'>
                     <h1>MEMO</h1>
+                    <p>A little journal for your everyday life ✨</p>
                     <p className="home-description">
                         Your personal space to organize thoughts, memories, and moments.
                     </p>
                     <p>Track your emotions through journaling and lift your mood with cute stickers!</p>
                 </div>
+                
             </div>
             <div className='login-form'>
                 {error && (

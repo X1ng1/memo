@@ -98,8 +98,11 @@ p {
 }
 
 .intro p {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
     font-size: 25px;
-    opacity: 80%;
+    opacity: 70%;
 }
 
 .home-description {

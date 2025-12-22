@@ -13,6 +13,8 @@ export default function Register() {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
+        setError(null); 
+
         try {
             const response = await fetch(backendUrl + '/api/auth/register', {
                 method: 'POST',
@@ -26,10 +28,9 @@ export default function Register() {
             const data = await response.json();
             
             if(data.success) {
-                setIsLoggedin(true);
-                navigate('/');
+                navigate('/login');
             } else {
-                setError('Invalid email/password');
+                setError('Registration failed.');
                 console.error('Registration failed:', data.message);
             }
         } catch(error) {
@@ -42,6 +43,7 @@ export default function Register() {
             <div className='right-side'>
                 <div className='intro'>
                     <h1>MEMO</h1>
+                    <p>A little journal for your everyday life ✨</p>
                     <p className="home-description">
                         Your personal space to organize thoughts, memories, and moments.
                     </p>
@@ -49,6 +51,13 @@ export default function Register() {
                 </div>
             </div>
             <div className='login-form'>
+                {error && (
+                    <p style={{
+                        backgroundColor: 'red',
+                        color: 'white',
+                        padding: 10
+                    }}>{error}</p>
+                )}
                 <h1>Sign Up</h1>
                 <form onSubmit={handleSubmit}>
                     <label>Full Name:
