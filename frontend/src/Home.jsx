@@ -106,7 +106,7 @@ export default function Home() {
                     </div>
                     <div className="journal-button-container">
                         <Link style={{color: color}} to="/calendar" className="journal-button">
-                            Sart Journaling
+                            Start Journaling
                         </Link>
                     </div>
                 </div>
