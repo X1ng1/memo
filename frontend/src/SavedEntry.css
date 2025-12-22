@@ -1,5 +1,5 @@
 .entire-screen {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     position: relative;
     display: flex;
@@ -75,4 +75,62 @@ p {
     font-size: 20px;
     border: none;
     background-color: transparent;
+}
+
+@media (max-width: 768px) {
+  .entire-screen {
+    width: 100%;
+    height: auto;
+    min-height: 100vh;
+    padding: 12px;
+    align-items: flex-start;
+  }
+
+  .editable-area {
+    width: 100%;
+    height: auto;
+    padding-bottom: 64px; /* room for edit button */
+  }
+
+  .journal-container {
+    width: 100%;
+    height: auto;
+    padding: 16px;
+    border-radius: 14px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
+    background: white;
+    box-sizing: border-box;
+  }
+
+  .entry-content {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+
+  /* Prevent iOS zoom issues & improve tap targets */
+  button,
+  .back-button {
+    font-size: 16px;
+  }
+
+  /* Make the edit button a sticky bottom bar instead of absolute */
+  .edit-button {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: 12px;
+    padding: 12px;
+    border-radius: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.18);
+    text-align: center;
+    z-index: 50;
+  }
+
+  /* When editing, avoid huge overlay and keep it readable */
+  .editable-area.editing {
+    background-color: rgba(0, 0, 0, 0.04);
+    box-shadow: none;
+    border-radius: 14px;
+  }
 }
