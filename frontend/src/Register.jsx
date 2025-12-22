@@ -27,7 +27,7 @@ export default function Register() {
             
             if(data.success) {
                 setIsLoggedin(true);
-                navigate('/');
+                navigate('/login');
             } else {
                 setError('Invalid email/password');
                 console.error('Registration failed:', data.message);
