@@ -182,20 +182,82 @@
 }
 
 @media (max-width: 768px) {
-    .journal-page {
-        padding: 1rem;
-    }
-    
-    .journal-container {
-        padding: 1.5rem;
-        width: 90%; /* mobile: use most of the screen */
-    }
-    
-    .journal-date {
-        font-size: 1.5rem;
-    }
-    
-    .form-actions {
-        flex-direction: column;
-    }
+  .journal-page {
+    width: 100%;
+    min-height: 100vh;
+    padding: 12px;
+    align-items: flex-start; /* better on phones */
+  }
+
+  .journal-container {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .journal-header {
+    margin-bottom: 16px;
+  }
+
+  .back-button {
+    margin-bottom: 10px;
+    font-size: 1rem;
+  }
+
+  .journal-date {
+    font-size: 1.4rem;
+    line-height: 1.2;
+  }
+
+  .journal-form {
+    gap: 14px;
+  }
+
+  .form-group label {
+    font-size: 1rem;
+  }
+
+  .form-input,
+  .form-select,
+  .form-textarea {
+    font-size: 16px; /* prevents iOS zoom + feels better */
+    padding: 12px;
+  }
+
+  .form-textarea {
+    min-height: 140px;
+  }
+
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 8px;
+  }
+
+  .save-button,
+  .delete-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+    font-size: 1rem;
+  }
+
+  /* Modal tweaks for small screens */
+  .modal-content {
+    width: 92%;
+    padding: 18px;
+    border-radius: 14px;
+  }
+
+  .modal-content h3 {
+    font-size: 1.25rem;
+  }
+
+  .modal-close-button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 12px;
+  }
 }
