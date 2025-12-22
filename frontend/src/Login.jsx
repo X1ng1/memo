@@ -27,7 +27,7 @@ export default function Login() {
             if(data.success) {
                 setIsLoggedin(true);
                 await getUserData();
-                navigate('/');
+                navigate('/app');
                 console.log('Login successful');
             } else {
                 setError('Invalid email/password');

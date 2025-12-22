@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Text:ital@0;1&family=Fredericka+the+Great&family=Indie+Flower&display=swap');
+
+.landing-container {
+  margin: 0 auto;
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle at top, #f6f1ff 0%, #ffffff 55%);
+}
+
+/* The "book" */
+.landing-book {
+  display: flex;
+  width: min(1100px, 92vw);
+  height: min(520px, 72vh);
+  border-radius: 16px;
+  overflow: hidden;
+
+  /* book depth */
+  box-shadow:
+    0 18px 45px rgba(0, 0, 0, 0.14),
+    0 2px 0 rgba(0, 0, 0, 0.03);
+
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  background: white;
+  position: relative;
+}
+
+/* book spine */
+.landing-book::before {
+  content: "";
+  position: absolute;
+  left: 55%;
+  top: 0;
+  height: 100%;
+  width: 10px;
+  transform: translateX(-50%);
+  background: linear-gradient(
+    to right,
+    rgba(0,0,0,0.12),
+    rgba(255,255,255,0.7),
+    rgba(0,0,0,0.06)
+  );
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* Left page */
+.landing-left {
+  width: 55%;
+  padding: 44px 44px 36px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: linear-gradient(180deg, #ffffff 0%, #fbfbff 100%);
+}
+
+/* Right "cover" */
+.landing-right {
+  width: 45%;
+  padding: 44px 34px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  background: linear-gradient(135deg, #6a00ff, blueviolet);
+  position: relative;
+}
+
+/* subtle pattern on cover */
+.landing-right::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255,255,255,0.18) 1px, transparent 1px);
+  background-size: 18px 18px;
+  opacity: 0.25;
+  pointer-events: none;
+}
+
+/* Typography */
+.landing-title {
+  margin: 0 0 12px 0;
+  font-family: "Fredericka the Great", serif;
+  font-weight: 400;
+  font-size: 62px;
+  letter-spacing: 0.5px;
+}
+
+.landing-tagline {
+  margin: 0 0 22px 0;
+  font-family: "Indie Flower", cursive;
+  font-size: 26px;
+  opacity: 0.95;
+}
+
+.landing-subtitle {
+  margin: 0 0 24px 0;
+  font-family: "DM Serif Text", serif;
+  font-size: 18px;
+  line-height: 1.7;
+  color: rgba(0, 0, 0, 0.78);
+  max-width: 520px;
+}
+
+/* CTA buttons */
+.landing-cta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+
+.landing-btn {
+  font-family: "DM Serif Text", serif;
+  font-size: 18px;
+  padding: 11px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 2px solid blueviolet;
+  transition: transform 0.08s ease, box-shadow 0.12s ease, opacity 0.12s ease;
+  user-select: none;
+}
+
+.landing-btn.primary {
+  background: blueviolet;
+  color: white;
+  box-shadow: 0 10px 20px rgba(138, 43, 226, 0.25);
+}
+
+.landing-btn.outline {
+  background: white;
+  color: blueviolet;
+}
+
+.landing-btn:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.landing-btn:active {
+  transform: translateY(0px);
+  opacity: 0.92;
+}
+
+/* Right side content */
+.feature-title {
+  font-family: "Fredericka the Great", serif;
+  font-weight: 400;
+  font-size: 30px;
+  margin: 0 0 14px 0;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-list {
+  margin: 0;
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  position: relative;
+  z-index: 1;
+}
+
+.feature-list li {
+  font-family: "DM Serif Text", serif;
+  font-size: 18px;
+  line-height: 1.45;
+}
+
+.feature-list span {
+  font-family: "Indie Flower", cursive;
+  font-size: 22px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+  .landing-book {
+    height: auto;
+    flex-direction: column;
+  }
+
+  .landing-book::before {
+    display: none;
+  }
+
+  .landing-left,
+  .landing-right {
+    width: 100%;
+  }
+
+  .landing-title {
+    font-size: 48px;
+  }
+}
