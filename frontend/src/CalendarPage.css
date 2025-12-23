@@ -50,39 +50,49 @@
 
 @media (max-width: 768px) {
   .calendar-page {
-    width: 100%;
+    width: 100vw;
     min-width: 0;        
-    padding: 12px;
+    padding: 0;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   .calendar-content {
-    padding: 0;
+    padding: 12px;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
   .calendar-header {
     flex-direction: column;
-    align-items: stretch;
-    gap: 12px;
+    align-items: center;
+    gap: 10px;
     margin-bottom: 12px;
   }
 
   .calendar-title {
-    font-size: 2.2rem;
+    font-size: 1.5rem;
     text-align: center;
-    line-height: 1.1;
+    line-height: 1.2;
     margin: 0;
+    padding: 0 8px;
+    word-wrap: break-word;
   }
 
   .home-button {
     display: block;
     text-align: center;
     width: 100%;
-    padding: 12px;
+    max-width: 300px;
+    padding: 10px 20px;
     border-radius: 12px;
+    font-size: 0.95rem;
   }
 
   .calendar-wrapper {
     padding: 12px;
     border-radius: 14px;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 }

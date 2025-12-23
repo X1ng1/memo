@@ -45,6 +45,7 @@
     height: 65%;
     width: 80%;
     padding: 30px;
+    position: relative;
 }
 
 .back-button {
@@ -77,7 +78,7 @@ p {
     font-size: 20px;
     border: none;
     color: white;
-    width: 10%;
+    width: 15%;
     border-radius: 10px;
 }
 
@@ -104,27 +105,45 @@ p {
 
 @media (max-width: 768px) {
   .entire-screen {
-    width: 100%;
+    width: 100vw;
     height: auto;
     min-height: 100vh;
-    padding: 12px;
-    align-items: flex-start;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   .editable-area {
     width: 100%;
     height: auto;
-    padding-bottom: 64px; /* room for edit button */
+    padding: 12px;
+    padding-bottom: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
   }
 
   .journal-container {
-    width: 100%;
+    width: calc(100% - 24px);
+    max-width: 500px;
     height: auto;
-    padding: 16px;
+    min-height: 400px;
+    padding: 20px;
     border-radius: 14px;
     box-shadow: 0 10px 25px rgba(0, 0, 0, 0.10);
     background: white;
     box-sizing: border-box;
+    margin: 0 auto;
+    position: relative;
+  }
+
+  .moveable-control-box,
+  .moveable-line,
+  .moveable-control {
+    position: absolute !important;
   }
 
   .entry-content {
@@ -132,15 +151,14 @@ p {
     line-height: 1.6;
   }
 
-  /* Prevent iOS zoom issues & improve tap targets */
   button,
   .back-button {
     font-size: 16px;
   }
 
-  /* Make the edit button a sticky bottom bar instead of absolute */
   .edit-button {
     position: fixed;
+    background-color: red !important;
     left: 12px;
     right: 12px;
     bottom: 12px;
@@ -152,10 +170,37 @@ p {
     z-index: 50;
   }
 
-  /* When editing, avoid huge overlay and keep it readable */
   .editable-area.editing {
     background-color: rgba(0, 0, 0, 0.04);
     box-shadow: none;
     border-radius: 14px;
+  }
+
+  .sticker-chooser {
+    position: fixed;
+    bottom: 70px;
+    left: 0;
+    right: 0;
+    top: auto;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 14px 14px 0 0;
+    overflow-x: auto;
+    z-index: 40;
+  }
+
+  .sticker-chooser h2 {
+    font-size: 20px;
+    margin: 0;
+    white-space: nowrap;
+  }
+
+  .sticker-chooser img {
+    flex-shrink: 0;
   }
 }

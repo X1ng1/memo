@@ -178,28 +178,62 @@
 
 @media (max-width: 768px) {
   .calendar-container {
-    margin: 10px;
+    margin: 0;
   }
   
   .rbc-toolbar {
     flex-direction: column;
-    gap: 15px;
-    padding: 15px;
+    gap: 10px;
+    padding: 12px 8px !important;
+    min-height: 80px !important;
+  }
+
+  .rbc-toolbar-label {
+    font-size: 1em;
+    margin: 0 5px;
+    order: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
   }
   
   .rbc-toolbar .rbc-btn-group {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .rbc-toolbar .rbc-btn-group:first-child {
+    order: -1;
   }
   
   .rbc-toolbar button {
-    margin: 2px;
-    padding: 8px 16px;
+    margin: 0;
+    padding: 6px 10px;
+    font-size: 0.85rem;
   }
   
   .rbc-month-view::after {
     font-size: 0.8em;
     padding: 6px 12px;
+  }
+}
+
+/* Extra small devices like iPhone SE */
+@media (max-width: 375px) {
+  .rbc-toolbar-label {
+    font-size: 0.9em;
+    margin: 0 3px;
+  }
+  
+  .rbc-toolbar button {
+    padding: 5px 8px;
+    font-size: 0.8rem;
+  }
+  
+  .rbc-toolbar .rbc-btn-group {
+    gap: 4px;
   }
 }

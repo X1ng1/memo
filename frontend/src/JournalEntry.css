@@ -183,18 +183,21 @@
 
 @media (max-width: 768px) {
   .journal-page {
-    width: 100%;
+    width: 100vw;
     min-height: 100vh;
-    padding: 12px;
-    align-items: flex-start; /* better on phones */
+    padding: 0;
+    align-items: flex-start;
+    overflow-x: hidden;
+    box-sizing: border-box;
   }
 
   .journal-container {
-    width: 100%;
+    width: calc(100% - 24px);
     max-width: 520px;
-    margin: 0 auto;
+    margin: 12px auto;
     padding: 16px;
     border-radius: 14px;
+    box-sizing: border-box;
   }
 
   .journal-header {
