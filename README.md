@@ -10,7 +10,7 @@ Our days go by in a blur and sometimes, we hardly recall what they were like as 
 - The home page offers multiple visualizations of journaling history.
   - Left side features a mini calendar showing dates with existing entries and their corresponding emotions that day. 
   - Right side shows user's most recent journal entry.
-<img width="512" height="258" alt="homepage" src="https://github.com/user-attachments/assets/bc756bdd-f2f3-4a40-b221-d4b5a865f420" />
+<img width="1755" height="947" alt="image" src="https://github.com/user-attachments/assets/79f5b712-4a8a-4f5d-8dc2-a4eb6ec9b4c3" />
 
 2. **Interactive Calendar**
 - The calendar page offers a bigger view of the calendar and existing entries. The user can click into any date with an existing journal entry and view its contents.
