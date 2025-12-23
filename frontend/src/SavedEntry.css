@@ -157,6 +157,7 @@ p {
   }
 
   .edit-button {
+    width: 20%;
     position: fixed;
     background-color: red !important;
     left: 12px;
