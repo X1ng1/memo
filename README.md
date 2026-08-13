@@ -3,7 +3,7 @@
 Our days go by in a blur and sometimes, we hardly recall what they were like as we follow the same daily routines. Diaries and journaling are a great way to keep track of our lives, but some people don’t want to fill up their spaces with endless journals. Our application offers an interactive, paperless method of keeping track of your life – a digital diary you can access at any time. 
 
 **Wireframe:** [Figma](https://www.figma.com/design/TS3Ac1j1Hajc1lubS8tGZg/Memo-App?node-id=0-1&t=wZMSCLUVwWGBtOtK-1) <br/>
-**Website Link:** https://memo-x1ng1.vercel.app/
+**Deployed Link:** https://memo-x1ng1.vercel.app/
 
 ## Key Features
 1. **Visualization of Journal Data**
